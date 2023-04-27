@@ -1,7 +1,7 @@
 import { Counter } from "./components/Counter"
 import { Form } from "./components/Form"
-import { Ul } from "./components/Ul/ul"
 import { useState } from "react"
+import { Ul } from "./components/ul/ul"
 
 let Data = JSON.parse(localStorage.getItem("todo"))
 
