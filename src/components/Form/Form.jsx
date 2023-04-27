@@ -8,11 +8,12 @@ export function Form({userData, setData}) {
         let { todo } = evt.target.elements
 
         let newObj = {
-            id: userData.length + 1,
+            id: userData[0].id + 1,
             work: todo.value,
             isdone: false
         }
         setData([newObj, ...userData])
+        localStorage.setItem("todo", JSON.stringify([newObj, ...userData]))
         todo.value = null
     }
     return (

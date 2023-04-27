@@ -1,14 +1,17 @@
 import "./ul.css"
 import { Btn } from "../Button"
-export function Ul({userData, removeUser}) {
+import { Input } from "../Input"
+
+
+export function Ul({userData, removeUser, handleComplete}) {
     return <ul>
         {
             userData.map((user, index) => {
                 return (
                     <li key={index}>
-                        <input type="checkbox" />
+                        <Input id={user.id} handleComplete={handleComplete} isChecked={user.isDone} type="checkbox" />
                         <p>{user.work}</p>
-                        <Btn index={index} removeUser={removeUser} children={"Delete"}/>
+                        <Btn id={user.id} removeUser={removeUser} children={"Delete"}/>
                     </li>
                 )
             })

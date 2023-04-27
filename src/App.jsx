@@ -1,21 +1,29 @@
+import { Counter } from "./components/Counter"
 import { Form } from "./components/Form"
 import { Ul } from "./components/Ul/ul"
 import { useState } from "react"
 
-let Data = []
+let Data = JSON.parse(localStorage.getItem("todo"))
 
 function App() {
   let [userData, setUserData] = useState(Data)
 
-  const removeUser = (index) => {
-    let newData = userData.filter((user, i) => i !== index)
+  const removeUser = (id) => {
+    let newData = userData.filter((user) => user.id !== id)
     setUserData(newData);
+    localStorage.setItem("todo", JSON.stringify(newData))
+  }
+
+  const handleComplete = (id) => {
+    let foundTodo = userData.find(todo => todo.id === Number(id))
+    console.log(foundTodo);
   }
 
   return (
     <>
-      <Form userData={userData} setData={setUserData}/>
-      <Ul userData={userData} removeUser={removeUser} />
+      <Form userData={userData} setData={setUserData} />
+      <Counter userData={userData}/>
+      <Ul handleComplete={handleComplete} userData={userData} removeUser={removeUser} />
     </>
   )
 }
